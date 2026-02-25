@@ -59,7 +59,8 @@
         <footer id="contact">
             <hr>
             <h3>Să ținem legătura!</h3>
-            <form id="contact-form">
+            
+            <form id="contact-form" novalidate>
                 <div class="form-group">
                     <label for="name">Nume:</label>
                     <input type="text" id="name" name="name" required placeholder="Numele tău...">
@@ -75,8 +76,10 @@
                     <textarea id="message" name="message" rows="4" required placeholder="Scrie-mi ceva..."></textarea>
                 </div>
 
-                <button type="button" onclick="submitForm()">Trimite Mesajul</button>
+                <button type="submit">Trimite Mesajul</button>
             </form>
+            
+            <div id="form-feedback" style="margin-top: 10px;"></div>
 
             <address>
                  <a href="mailto:vacarujulia22@gmail.com">vacarujulia22@gmail.com</a> | 
@@ -86,7 +89,6 @@
         </footer>
     </div>
 
-    <script>alert("Hello World!");</script>
     <script src="js/contact_form.js"></script>
 </body>
 </html>
