@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofoliu Julia Vacaru</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Julia Vacaru</h1>
+            <p>✨ Studentă IESC - UnitBv ✨</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about">Despre</a></li>
+                <li><a href="#hobbies">Hobby-uri</a></li>
+                <li><a href="#education">Educație</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="about">
+                <h2>Cine sunt eu?</h2>
+                <img src="images/poza.jpeg" alt="Julia" class="profile-img">
+                <p>Sunt studentă în anul 2 la Facultatea de Inginerie Electrică și Știința Calculatoarelor din Brașov. Sunt pasionată de tehnologie și îmi doresc să construiesc o carieră în IT, fiind mereu dornică să învăț lucruri noi.</p>
+            </section>
+
+            <section id="hobbies">
+                <h2>Pasiunile mele</h2>
+                <ul class="hobbies-list">
+                    <li>Drumeții</li>
+                    <li>Dans</li>
+                    <li>Citit</li>
+                    <li>Makeup</li>
+                </ul>
+            </section>
+
+            <section id="education">
+                <h2>Parcurs Academic</h2>
+                <ol class="edu-list">
+                    <li><strong>Colegiul Național "Dimitrie Cantemir"</strong>, Onești (2021-2024)</li>
+                    <li><strong>Universitatea Transilvania</strong> - Calculatoare (2024-Prezent)</li>
+                </ol>
+            </section>
+
+            <aside class="quote-container">
+                <blockquote class="modern-quote">
+                    "Simplitatea este sofisticarea supremă."
+                    <cite>— Leonardo da Vinci</cite>
+                </blockquote>
+            </aside>
+        </main>
+
+        <footer id="contact">
+            <hr>
+            <h3>Să ținem legătura!</h3>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nume:</label>
+                    <input type="text" id="name" name="name" required placeholder="Numele tău...">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="email@exemplu.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mesaj:</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Scrie-mi ceva..."></textarea>
+                </div>
+
+                <button type="button" onclick="submitForm()">Trimite Mesajul</button>
+            </form>
+
+            <address>
+                 <a href="mailto:vacarujulia22@gmail.com">vacarujulia22@gmail.com</a> | 
+                 <a href="tel:+40740231088">0740 231 088</a>
+            </address>
+            <p class="copyright">&copy; 2026 Julia Văcaru.</p>
+        </footer>
+    </div>
+
+    <script>alert("Hello World!");</script>
+    <script src="js/contact_form.js"></script>
+</body>
+</html>
