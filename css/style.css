@@ -6,37 +6,56 @@
 }
 
 :root {
+    /* Culori Temă Light (Implicit) */
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --accent-color: #ff4757;
     --bg-page: #f0f2f5;
+    --container-bg: #ffffff;
     --text-main: #2d3436;
-    --white: #ffffff;
+    --text-secondary: #444;
+    --text-muted: #777;
+    --border-color: #ddd;
+    --quote-bg: #fdfdfd;
     --shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* VARIABILE PENTRU DARK MODE */
+body.dark-mode {
+    --primary-gradient: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+    --bg-page: #1a1a2e;
+    --container-bg: #16213e;
+    --text-main: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888;
+    --border-color: #333;
+    --quote-bg: #1f293a;
+    --shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 /* CORPUL PAGINII */
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: var(--primary-gradient);
-    background-attachment: fixed;
+    background: var(--bg-page);
     color: var(--text-main);
     padding: 20px;
-    line-height: 1.6; /* Îmbunătățește citirea textului */
+    line-height: 1.6;
+    transition: background 0.4s, color 0.4s;
 }
 
 /* CONTAINERUL PRINCIPAL */
 .container {
-    max-width: 800px; /* O dimensiune mai controlată pentru desktop */
+    max-width: 800px;
     margin: 40px auto;
-    background: var(--white);
+    background: var(--container-bg);
     padding: 40px;
     border-radius: 20px;
     box-shadow: var(--shadow);
+    transition: background 0.4s;
 }
 
 /* HEADER */
 header h1 { 
-    color: #6c5ce7; 
+    color: #a29bfe; 
     text-align: center; 
     margin-bottom: 10px;
 }
@@ -48,32 +67,55 @@ header h1 {
     display: block;
     margin: 20px auto;
     border: 4px solid #6c5ce7;
-    object-fit: cover; /* Previne deformarea imaginii */
+    object-fit: cover;
 }
 
 /* NAVIGARE */
 nav ul { list-style: none; text-align: center; margin: 25px 0; }
-nav ul li { display: inline-block; margin: 0 10px; }
-nav ul li a {
+nav ul li { display: inline-block; margin: 0 5px; }
+nav ul li a, #theme-toggle {
     text-decoration: none;
     color: white;
     background: var(--primary-gradient);
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 50px;
     font-weight: bold;
-    transition: transform 0.2s; /* Efect vizual la trecerea cu mouse-ul */
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
 }
-nav ul li a:hover { transform: scale(1.05); }
+
+nav ul li a:hover, #theme-toggle:hover { 
+    transform: scale(1.05);
+    filter: brightness(1.1); 
+}
+
+/* EXERCIȚIUL 4: STILURI PENTRU TITLURI ȘI ASCUNDERE */
+main h2 {
+    cursor: pointer; /* Indică faptul că elementul este interactiv */
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+    user-select: none; /* Previne selectarea textului la click-uri repetate */
+    margin-top: 20px;
+}
+
+main h2:hover {
+    background: rgba(162, 155, 254, 0.1); /* Efect vizual subtil la hover */
+}
+
+/* Clasa care ascunde conținutul (Exercițiul 4) */
+.hidden {
+    display: none !important;
+}
 
 /* LISTA HOBBY */
-.hobbies-list {
-    margin: 20px 0 20px 40px;
-    list-style-type: disc;
-}
+.hobbies-list { margin: 20px 0 20px 40px; }
 .hobbies-list li {
     margin-bottom: 10px;
     font-size: 1.1rem;
-    color: #444;
+    color: var(--text-secondary);
 }
 
 /* CITATE */
@@ -81,22 +123,26 @@ nav ul li a:hover { transform: scale(1.05); }
     margin: 30px 0;
     padding: 20px;
     border-left: 10px solid var(--accent-color);
-    background: #fdfdfd;
+    background: var(--quote-bg);
     font-style: italic;
+    color: var(--text-main);
 }
 
-/* FORMULAR ȘI FEEDBACK */
+/* FORMULAR */
 #contact-form { max-width: 500px; margin: 20px auto; }
 .form-group { margin-bottom: 15px; }
+
 input, textarea { 
     width: 100%; 
     padding: 12px; 
-    border: 1px solid #ddd; 
+    border: 1px solid var(--border-color); 
     border-radius: 10px;
+    background: var(--container-bg);
+    color: var(--text-main);
     font-size: 1rem;
 }
 
-button {
+button[type="submit"] {
     width: 100%;
     padding: 15px;
     background: var(--accent-color);
@@ -105,28 +151,14 @@ button {
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 1rem;
 }
 
-button:hover { background: #ff3344; }
-
-/* Adresă și Mesaje Validare */
-address { text-align: center; margin-top: 20px; font-style: normal; }
-
+/* Mesaje Validare */
 #form-feedback {
     text-align: center;
     margin-top: 15px;
-    min-height: 24px; /* Previne "săritura" elementelor când apare mesajul */
+    min-height: 24px;
+    font-weight: bold;
 }
 
-.error-message { 
-    color: red !important; 
-    font-weight: bold; 
-}
-
-.success-message { 
-    color: green !important; 
-    font-weight: bold; 
-}
-
-.copyright { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #777; }
+.copyright { text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--text-muted); }

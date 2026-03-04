@@ -20,37 +20,44 @@
                 <li><a href="#hobbies">Hobby-uri</a></li>
                 <li><a href="#education">Educație</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button id="theme-toggle">🌙 Dark Mode</button></li>
             </ul>
         </nav>
 
         <main>
             <section id="about">
                 <h2>Cine sunt eu?</h2>
-                <img src="images/poza.jpeg" alt="Julia" class="profile-img">
-                <p>Sunt studentă în anul 2 la Facultatea de Inginerie Electrică și Știința Calculatoarelor din Brașov. Sunt pasionată de tehnologie și îmi doresc să construiesc o carieră în IT, fiind mereu dornică să învăț lucruri noi.</p>
+                <div class="content-to-toggle">
+                    <img src="images/poza.jpeg" alt="Julia" class="profile-img">
+                    <p>Sunt studentă în anul 2 la Facultatea de Inginerie Electrică și Știința Calculatoarelor din Brașov. Sunt pasionată de tehnologie și îmi doresc să construiesc o carieră în IT, fiind mereu dornică să învăț lucruri noi.</p>
+                </div>
             </section>
 
             <section id="hobbies">
                 <h2>Pasiunile mele</h2>
-                <ul class="hobbies-list">
-                    <li>Drumeții</li>
-                    <li>Dans</li>
-                    <li>Citit</li>
-                    <li>Makeup</li>
-                </ul>
+                <div class="content-to-toggle">
+                    <ul class="hobbies-list">
+                        <li>Drumeții</li>
+                        <li>Dans</li>
+                        <li>Citit</li>
+                        <li>Makeup</li>
+                    </ul>
+                </div>
             </section>
 
             <section id="education">
                 <h2>Parcurs Academic</h2>
-                <ol class="edu-list">
-                    <li><strong>Colegiul Național "Dimitrie Cantemir"</strong>, Onești (2021-2024)</li>
-                    <li><strong>Universitatea Transilvania</strong> - Calculatoare (2024-Prezent)</li>
-                </ol>
+                <div class="content-to-toggle">
+                    <ol class="edu-list">
+                        <li><strong>Colegiul Național "Dimitrie Cantemir"</strong>, Onești (2020-2024)</li>
+                        <li><strong>Universitatea Transilvania</strong> - Calculatoare (2024-2028)</li>
+                    </ol>
+                </div>
             </section>
 
             <aside class="quote-container">
                 <blockquote class="modern-quote">
-                    "Simplitatea este sofisticarea supremă." "Munceste pentru ce iti doresti!"
+                    "Simplitatea este sofisticarea supremă. Munceste pentru ce iti doresti!"
                     <cite>— Leonardo da Vinci</cite>
                 </blockquote>
             </aside>
@@ -79,7 +86,7 @@
                 <button type="submit">Trimite Mesajul</button>
             </form>
             
-            <div id="form-feedback" style="margin-top: 10px;"></div>
+            <div id="form-feedback" style="margin-top: 10px; font-weight: bold;"></div>
 
             <address>
                  <a href="mailto:vacarujulia22@gmail.com">vacarujulia22@gmail.com</a> | 
@@ -89,6 +96,7 @@
         </footer>
     </div>
 
+    <script src="js/array.js"></script>
     <script src="js/contact_form.js"></script>
 </body>
 </html>
