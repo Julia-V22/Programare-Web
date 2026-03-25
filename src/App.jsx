@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Card from './Card';
 import QuickNote from './QuickNote';
-import TodoList from './TodoList'; // Importul TodoList
+import TodoList from './TodoList';
+import ContactForm from './ContactForm'; // 1. IMPORTĂ NOUA COMPONENTĂ
 
 function App() {
   // --- STATE (Starea aplicației) ---
@@ -15,20 +16,25 @@ function App() {
   ];
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
       <h1>Programare Web - Laboratoare</h1>
 
-      {/* Exercițiul 1: Nota Rapida (Input Controlat) */}
+      {/* Exercițiul 1: Nota Rapida */}
       <QuickNote />
 
       <hr />
 
-      {/* Exercițiul 2: Todo List (Array State) */}
+      {/* Exercițiul 2 & 3: Todo List */}
       <TodoList />
 
       <hr />
 
-      {/* Exercițiul 5: Contor (Number State) */}
+      {/* Exercițiul 4: Formular de Contact (ADĂUGAT AICI) */}
+      <ContactForm />
+
+      <hr />
+
+      {/* Exercițiul 5: Contor */}
       <div style={{ margin: '20px 0' }}>
         <p>Ai apăsat butonul de <strong>{count}</strong> ori</p>
         <button onClick={() => setCount(count + 1)}>Click pentru incrementare</button>
@@ -36,7 +42,7 @@ function App() {
 
       <hr />
 
-      {/* Exercițiul 4: Lista de Proiecte (Map) */}
+      {/* Exercițiul 4 (din setul anterior): Lista de Proiecte */}
       <h2>Proiectele mele:</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
         {projects.map(function(item, index) {
@@ -53,4 +59,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

@@ -1,21 +1,30 @@
 import { useState } from 'react';
 
 function TodoList() {
-  const [todos, setTodos] = useState([]); // Array-ul de task-uri
-  const [input, setInput] = useState(''); // Textul din input
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
 
+  // Funcția de adăugare (rămâne la fel)
   function handleAdd() {
-    if (input.trim() === '') return; // Prevenim adăugarea de spații goale
+    if (input.trim() === '') return;
+    setTodos([...todos, input]);
+    setInput('');
+  }
+
+  // EXERCIȚIUL 3: Funcția de ștergere
+  function handleDelete(index) {
+    // .filter() creează un array NOU care conține doar 
+    // elementele al căror index NU este cel pe care vrem să-l ștergem
+    const newTodos = todos.filter(function(_, i) {
+      return i !== index;
+    });
     
-    // Creăm un array NOU care conține tot ce era înainte + noul input
-    setTodos([...todos, input]); 
-    
-    setInput(''); // Resetăm câmpul de text după adăugare
+    setTodos(newTodos);
   }
 
   return (
     <div style={{ padding: '20px', border: '1px solid #ff9800', margin: '10px 0', borderRadius: '8px' }}>
-      <h3>Todo List</h3>
+      <h3>Todo List (cu Ștergere)</h3>
       
       <input 
         type="text" 
@@ -25,10 +34,19 @@ function TodoList() {
       />
       <button onClick={handleAdd}>Adauga</button>
 
-      {/* Afișarea listei */}
       <ul style={{ marginTop: '15px' }}>
         {todos.map(function(todo, index) {
-          return <li key={index}>{todo}</li>;
+          return (
+            <li key={index} style={{ marginBottom: '8px' }}>
+              {todo} 
+              <button 
+                onClick={() => handleDelete(index)} 
+                style={{ marginLeft: '10px', color: 'red', cursor: 'pointer' }}
+              >
+                Sterge
+              </button>
+            </li>
+          );
         })}
       </ul>
     </div>
