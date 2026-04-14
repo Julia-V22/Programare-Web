@@ -6,7 +6,6 @@
 }
 
 :root {
-    /* Culori Temă Light (Implicit) */
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --accent-color: #ff4757;
     --bg-page: #f0f2f5;
@@ -19,7 +18,6 @@
     --shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
-/* VARIABILE PENTRU DARK MODE */
 body.dark-mode {
     --primary-gradient: linear-gradient(135deg, #2d3436 0%, #000000 100%);
     --bg-page: #1a1a2e;
@@ -32,7 +30,6 @@ body.dark-mode {
     --shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
-/* CORPUL PAGINII */
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background: var(--bg-page);
@@ -42,7 +39,6 @@ body {
     transition: background 0.4s, color 0.4s;
 }
 
-/* CONTAINERUL PRINCIPAL */
 .container {
     max-width: 800px;
     margin: 40px auto;
@@ -53,7 +49,6 @@ body {
     transition: background 0.4s;
 }
 
-/* HEADER */
 header h1 { 
     color: #a29bfe; 
     text-align: center; 
@@ -70,7 +65,6 @@ header h1 {
     object-fit: cover;
 }
 
-/* NAVIGARE */
 nav ul { list-style: none; text-align: center; margin: 25px 0; }
 nav ul li { display: inline-block; margin: 0 5px; }
 nav ul li a, #theme-toggle {
@@ -91,34 +85,67 @@ nav ul li a:hover, #theme-toggle:hover {
     filter: brightness(1.1); 
 }
 
-/* EXERCIȚIUL 4: STILURI PENTRU TITLURI ȘI ASCUNDERE */
 main h2 {
-    cursor: pointer; /* Indică faptul că elementul este interactiv */
+    cursor: pointer;
     padding: 10px;
     border-radius: 8px;
     transition: background 0.3s;
-    user-select: none; /* Previne selectarea textului la click-uri repetate */
+    user-select: none;
     margin-top: 20px;
+    color: #6c5ce7; /* Titlu colorat */
 }
 
 main h2:hover {
-    background: rgba(162, 155, 254, 0.1); /* Efect vizual subtil la hover */
+    background: rgba(162, 155, 254, 0.1);
 }
 
-/* Clasa care ascunde conținutul (Exercițiul 4) */
 .hidden {
     display: none !important;
 }
 
-/* LISTA HOBBY */
-.hobbies-list { margin: 20px 0 20px 40px; }
-.hobbies-list li {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+/* --- STILURI NOI PENTRU COLORARE --- */
+
+#about {
+    border-radius: 15px;
+    border-left: 5px solid #a29bfe;
+    background: linear-gradient(135deg, rgba(162, 155, 254, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+    padding: 20px;
 }
 
-/* CITATE */
+#about p:first-of-type {
+    color: #6c5ce7;
+    font-weight: 600;
+}
+
+.hobbies-list { 
+    margin: 20px 0; 
+    list-style: none;
+    padding-left: 0;
+}
+
+.hobbies-list li {
+    background: #a29bfe;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(162, 155, 254, 0.3);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.hobbies-list li:hover {
+    transform: translateX(10px);
+    background: #6c5ce7;
+}
+
+body.dark-mode #about {
+    background: linear-gradient(135deg, rgba(45, 52, 54, 0.5) 0%, var(--container-bg) 100%);
+}
+
+/* --- SFÂRȘIT STILURI NOI --- */
+
 .modern-quote {
     margin: 30px 0;
     padding: 20px;
@@ -128,7 +155,6 @@ main h2:hover {
     color: var(--text-main);
 }
 
-/* FORMULAR */
 #contact-form { max-width: 500px; margin: 20px auto; }
 .form-group { margin-bottom: 15px; }
 
@@ -153,7 +179,6 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-/* Mesaje Validare */
 #form-feedback {
     text-align: center;
     margin-top: 15px;
