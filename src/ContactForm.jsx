@@ -6,27 +6,30 @@ function ContactForm() {
   const [message, setMessage] = useState('');
   const [feedback, setFeedback] = useState('');
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Verificare pentru câmpuri goale (folosind .trim() pentru siguranță)
     if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-      setFeedback('⚠️ Oops! Julia, te rugăm să completezi toate câmpurile.');
+      setFeedback('⚠️ Completează toate câmpurile!');
     } else {
-      setFeedback(`🚀 Succes! Mesajul de la "${name}" a fost procesat de sistem.`);
+      setFeedback('🚀 Mulțumim, ' + name + '! Mesajul a fost trimis.');
+      // Resetăm câmpurile
       setName('');
       setEmail('');
       setMessage('');
     }
-  }
+  };
 
-  // Obiecte de stil pentru a păstra JSX-ul curat
+  // Stiluri inline pentru un aspect unitar
   const inputStyle = {
     padding: '12px',
     borderRadius: '8px',
     border: '1px solid #d1d5db',
     fontSize: '14px',
     outline: 'none',
-    transition: 'border-color 0.2s',
+    width: '100%',
+    boxSizing: 'border-box'
   };
 
   const buttonStyle = {
@@ -37,8 +40,7 @@ function ContactForm() {
     borderRadius: '8px',
     fontWeight: 'bold',
     cursor: 'pointer',
-    marginTop: '10px',
-    transition: 'background-color 0.3s'
+    transition: 'background 0.3s'
   };
 
   return (
@@ -46,66 +48,42 @@ function ContactForm() {
       <h3 style={{ color: '#1f2937', marginBottom: '15px' }}>📩 Contactează Dezvoltatorul</h3>
       
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <input 
+          type="text" 
+          placeholder="Nume" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          style={inputStyle}
+        />
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-          <label style={labelStyle}>Nume Complet</label>
-          <input 
-            type="text" 
-            placeholder="Ex: Julia Vacaru" 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
-            style={inputStyle}
-            onFocus={(e) => e.target.style.borderColor = '#6366f1'}
-            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
-          />
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-          <label style={labelStyle}>Email Studențesc</label>
-          <input 
-            type="email" 
-            placeholder="prenume.nume@student.unitbv.ro" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            style={inputStyle}
-            onFocus={(e) => e.target.style.borderColor = '#6366f1'}
-            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
-          />
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-          <label style={labelStyle}>Mesaj / Feedback Laborator</label>
-          <textarea 
-            placeholder="Scrie aici observațiile tale..." 
-            value={message} 
-            onChange={(e) => setMessage(e.target.value)} 
-            style={{ ...inputStyle, minHeight: '100px', resize: 'vertical' }}
-            onFocus={(e) => e.target.style.borderColor = '#6366f1'}
-            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
-          />
-        </div>
-
-        <button 
-          type="submit" 
-          style={buttonStyle}
-          onMouseOver={(e) => e.target.style.backgroundColor = '#4338ca'}
-          onMouseOut={(e) => e.target.style.backgroundColor = '#4f46e5'}
-        >
-          Trimite Mesaj
-        </button>
+        <input 
+          type="email" 
+          placeholder="Email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          style={inputStyle}
+        />
+        
+        <textarea 
+          placeholder="Mesajul tău" 
+          value={message} 
+          onChange={(e) => setMessage(e.target.value)} 
+          style={{ ...inputStyle, minHeight: '100px', resize: 'vertical' }}
+        />
+        
+        <button type="submit" style={buttonStyle}>Trimite</button>
       </form>
 
-      {/* Mesaj de feedback animat vizual prin culori */}
+      {/* Mesaj de feedback colorat dinamic */}
       {feedback && (
         <div style={{ 
-          marginTop: '20px', 
+          marginTop: '15px', 
           padding: '10px', 
           borderRadius: '6px', 
           backgroundColor: feedback.includes('⚠️') ? '#fef2f2' : '#f0fdf4',
           color: feedback.includes('⚠️') ? '#dc2626' : '#16a34a',
-          fontSize: '0.9rem',
-          fontWeight: '600',
           textAlign: 'center',
+          fontWeight: 'bold',
           border: `1px solid ${feedback.includes('⚠️') ? '#fecaca' : '#bbf7d0'}`
         }}>
           {feedback}
@@ -114,11 +92,5 @@ function ContactForm() {
     </div>
   );
 }
-
-const labelStyle = {
-  fontSize: '0.85rem',
-  fontWeight: '600',
-  color: '#374151'
-};
 
 export default ContactForm;
