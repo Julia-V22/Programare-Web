@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Navbar from './Navbar';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import './App.css';
 function App() {
  return (
  <BrowserRouter>

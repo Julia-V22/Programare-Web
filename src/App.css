@@ -1,8 +1,13 @@
+/* --- STILURI DE BAZĂ (PĂSTRATE) --- */
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.card {
+  padding: 2em;
 }
 
 .logo {
@@ -11,20 +16,18 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -33,10 +36,52 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
+}
+
+/* --- STILURI NAVIGARE (MODIFICATE ȘI OPTIMIZATE) --- */
+nav {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 30px;
+  background-color: #2C3E50 !important; /* Forțăm fundalul închis */
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+}
+
+nav a {
+  /* Folosim !important pentru a scăpa de albastrul default de link */
+  color: #ecf0f1 !important; 
+  text-decoration: none !important;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+/* Efect de hover */
+nav a:hover {
+  background-color: #34495E !important;
+  color: #FF7733 !important; /* Textul devine portocaliu la hover */
+  transform: translateY(-2px);
+}
+
+/* Stil pentru link-ul activ (PAGINA CURENTĂ) */
+nav a.active {
+  background-color: #FF7733 !important; /* Fundal portocaliu */
+  color: white !important; /* Text alb */
+  box-shadow: 0 4px 10px rgba(255, 119, 51, 0.4);
+  transform: translateY(0);
+}
+
+/* Efect de apăsare */
+nav a:active {
+  transform: scale(0.95);
 }
