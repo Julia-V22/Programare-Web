@@ -13,12 +13,37 @@ app.get('/', function(req, res) {
   res.json({ message: 'Serverul functioneaza!' });
 });
 
-// EXERCIȚIUL 2: Ruta API care returnează toate proiectele
+// GET /api/projects - Returnează toate proiectele
 app.get('/api/projects', function(req, res) {
   res.json(projects);
 });
 
-// Pornește serverul
+
+// 1. GET /api/projects/:id - Returnează un singur proiect după ID
+app.get('/api/projects/:id', function(req, res) {
+  const projectId = parseInt(req.params.id); // Convertim ID-ul din URL în număr
+  const project = projects.find(p => p.id === projectId);
+
+  if (project) {
+    res.json(project);
+  } else {
+    res.status(404).json({ error: 'Proiectul nu a fost gasit' });
+  }
+});
+
+// 2. GET /api/stats - Returnează statistici despre proiecte
+app.get('/api/stats', function(req, res) {
+  const total = projects.length;
+  const completed = projects.filter(p => p.done === true).length;
+  const ongoing = projects.filter(p => p.done === false).length;
+
+  res.json({
+    totalProiecte: total,
+    finalizate: completed,
+    inLucru: ongoing
+  });
+});
+
 app.listen(PORT, function() {
   console.log('Server pornit pe http://localhost:' + PORT);
 });
