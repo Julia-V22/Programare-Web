@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 const projects = [
   { id: 1, title: "Pagina Personala", tech: "HTML, CSS", done: true },
   { id: 2, title: "Calculator Buget", tech: "JS", done: true },
@@ -18,10 +20,9 @@ app.get('/api/projects', function(req, res) {
   res.json(projects);
 });
 
-
-// 1. GET /api/projects/:id - Returnează un singur proiect după ID
+// GET /api/projects/:id - Returnează un singur proiect după ID
 app.get('/api/projects/:id', function(req, res) {
-  const projectId = parseInt(req.params.id); // Convertim ID-ul din URL în număr
+  const projectId = parseInt(req.params.id);
   const project = projects.find(p => p.id === projectId);
 
   if (project) {
@@ -31,7 +32,7 @@ app.get('/api/projects/:id', function(req, res) {
   }
 });
 
-// 2. GET /api/stats - Returnează statistici despre proiecte
+// GET /api/stats - Returnează statistici
 app.get('/api/stats', function(req, res) {
   const total = projects.length;
   const completed = projects.filter(p => p.done === true).length;
@@ -42,6 +43,21 @@ app.get('/api/stats', function(req, res) {
     finalizate: completed,
     inLucru: ongoing
   });
+});
+
+//Ruta POST pentru adăugarea unui proiect nou
+app.post('/api/projects', function(req, res) {
+  const newProject = {
+    id: projects.length + 1,
+    title: req.body.title,
+    tech: req.body.tech,
+    done: req.body.done || false,
+  };
+
+  projects.push(newProject);
+  
+  // Status 201 înseamnă Creat cu succes
+  res.status(201).json(newProject);
 });
 
 app.listen(PORT, function() {
