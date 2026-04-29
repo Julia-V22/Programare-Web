@@ -21,7 +21,6 @@ function About() {
         justifyContent: 'center'
       }}>
         
-        {/* SECȚIUNE POZĂ */}
         <div style={{ flex: '1', minWidth: '280px', display: 'flex', justifyContent: 'center' }}>
           <div style={{
             width: '250px',
@@ -33,7 +32,7 @@ function About() {
             backgroundColor: '#2c3e50' 
           }}>
             <img 
-              src="/poza.jpeg" // Asigură-te că ai poza în folderul 'public'
+              src="/poza.jpeg"
               alt="Julia" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               onError={(e) => e.target.style.display = 'none'} // Ascunde imaginea dacă lipsește link-ul
@@ -65,7 +64,6 @@ function About() {
 
       <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid rgba(255,119,51,0.2)' }} />
 
-      {/* SECȚIUNE HOBBY-URI */}
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
@@ -93,7 +91,7 @@ function About() {
 }
 
 const hobbyCardStyle = {
-  background: '#2c3e50', // Carduri mai închise pentru contrast
+  background: '#2c3e50',
   padding: '25px',
   borderRadius: '18px',
   textAlign: 'center',

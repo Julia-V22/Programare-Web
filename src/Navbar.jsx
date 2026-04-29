@@ -5,7 +5,6 @@ function Navbar() {
     <nav>
       <NavLink to="/" end>Home</NavLink>
 
-        {/* Link nou către pagina personală */}
       <NavLink to="/despre">Despre Mine</NavLink> 
 
       <NavLink to="/projects">Proiecte</NavLink>

@@ -8,7 +8,6 @@ function ProjectList() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    // Simulăm o întârziere de rețea de 800ms
     setTimeout(() => {
       fetch('/data/projects.json')
         .then(res => {
@@ -32,7 +31,7 @@ function ProjectList() {
     p.tech.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Ex 4: Statistici calculate din mers
+  // Ex 4: Statistici calculate
   const total = projects.length;
   const finished = projects.filter(p => p.done).length;
   const inProgress = total - finished;
