@@ -1,87 +1,97 @@
-/* --- STILURI DE BAZĂ (PĂSTRATE) --- */
+/* --- STILURI DE BAZĂ (PĂSTRATE & CORECTATE PENTRU ÎNCADRARE) --- */
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #2c3e50 0%, #0b0e11 100%);
+  background-attachment: fixed;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Centrare orizontală pentru tot ce e în body */
+  display: flex;
+  justify-content: center;
+}
+
 #root {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1200px; /* Lățime optimă pentru dashboard */
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  
+  /* Forțează centrarea verticală a componentelor */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
-.card {
-  padding: 2em;
+/* --- CLASĂ PENTRU PAGINI (Adaugă className="page-container" în Home, About, etc.) --- */
+.page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.8s ease-out;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* --- STILURI NAVIGARE (MODIFICATE ȘI OPTIMIZATE) --- */
+/* --- NAVIGARE (Rămâne neschimbată, dar asigurăm centrarea) --- */
 nav {
   display: flex !important;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  padding: 15px 30px;
-  background-color: #2C3E50 !important; /* Forțăm fundalul închis */
-  border-radius: 12px;
-  margin-bottom: 40px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  gap: 25px;
+  padding: 18px 40px;
+  background-color: rgba(44, 62, 80, 0.7) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px; 
+  margin: 0 auto 60px auto; /* Centrare automată și spațiu jos */
+  width: fit-content;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   flex-wrap: wrap;
 }
 
 nav a {
-  /* Folosim !important pentru a scăpa de albastrul default de link */
-  color: #ecf0f1 !important; 
+  color: #bdc3c7 !important; 
   text-decoration: none !important;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  user-select: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Efect de hover */
 nav a:hover {
-  background-color: #34495E !important;
-  color: #FF7733 !important; /* Textul devine portocaliu la hover */
-  transform: translateY(-2px);
+  color: #FF7733 !important; 
+  transform: translateY(-3px);
 }
 
-/* Stil pentru link-ul activ (PAGINA CURENTĂ) */
 nav a.active {
-  background-color: #FF7733 !important; /* Fundal portocaliu */
-  color: white !important; /* Text alb */
-  box-shadow: 0 4px 10px rgba(255, 119, 51, 0.4);
-  transform: translateY(0);
+  background: linear-gradient(135deg, #FF7733 0%, #E65100 100%) !important;
+  color: white !important; 
+  box-shadow: 0 8px 20px rgba(255, 119, 51, 0.4);
 }
 
-/* Efect de apăsare */
-nav a:active {
-  transform: scale(0.95);
+/* --- COMPONENTE FORMULAR / TEXT (Fix vizual) --- */
+input, textarea {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  max-width: 500px; /* Să nu se întindă la infinit pe ecran mare */
+  margin-bottom: 15px;
 }
+
+/* Animație */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Păstrează .logo și restul animațiilor tale neschimbate sub această linie... */
