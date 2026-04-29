@@ -45,7 +45,7 @@ app.get('/api/stats', function(req, res) {
   });
 });
 
-//Ruta POST pentru adăugarea unui proiect nou
+// Ruta POST - adăugare proiect
 app.post('/api/projects', function(req, res) {
   const newProject = {
     id: projects.length + 1,
@@ -55,9 +55,22 @@ app.post('/api/projects', function(req, res) {
   };
 
   projects.push(newProject);
-  
-  // Status 201 înseamnă Creat cu succes
   res.status(201).json(newProject);
+});
+
+// EXERCIȚIUL 5: DELETE — ștergere proiect
+app.delete('/api/projects/:id', function(req, res) {
+  const id = parseInt(req.params.id);
+  const index = projects.findIndex(p => p.id === id);
+
+  if (index === -1) {
+    // Dacă proiectul nu există, trimitem 404
+    res.status(404).json({ error: 'Not found' });
+  } else {
+    // Ștergem proiectul din array
+    projects.splice(index, 1);
+    res.json({ message: 'Deleted' });
+  }
 });
 
 app.listen(PORT, function() {
