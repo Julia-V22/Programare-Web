@@ -35,7 +35,7 @@ function About() {
               src="/poza.jpeg"
               alt="Julia" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={(e) => e.target.style.display = 'none'} // Ascunde imaginea dacă lipsește link-ul
+              onError={(e) => e.target.style.display = 'none'} 
             />
           </div>
         </div>
