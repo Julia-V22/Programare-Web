@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import NotFound from './pages/NotFound'; 
 import './App.css';
 
 function App() {
@@ -13,10 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
-        
         <Route path="/despre" element={<About />} />
-        
         <Route path="/contact" element={<Contact />} />
+        
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
