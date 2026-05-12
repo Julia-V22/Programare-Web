@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const Project = require('./models/Project');
 mongoose.connect('mongodb://localhost:27017/dashboard')
  .then(function() {
  console.log('Conectat la MongoDB!');
@@ -13,23 +14,23 @@ const PORT = 3000;
 
 app.use(express.json());
 
-const projects = [
-  { id: 1, title: "Pagina Personala", tech: "HTML, CSS", done: true },
-  { id: 2, title: "Calculator Buget", tech: "JS", done: true },
-  { id: 3, title: "Dashboard React", tech: "React", done: false },
-  { id: 4, title: "API Meteo", tech: "React, API", done: false },
-];
 
 app.get('/', function(req, res) {
-  res.json({ message: 'Serverul functioneaza!' });
+ res.json({ message: 'Serverul functioneaza!' });
 });
 
-// GET /api/projects - Returnează toate proiectele
-app.get('/api/projects', function(req, res) {
-  res.json(projects);
+// ruta GET folosind async/await
+app.get('/api/projects', async function(req, res) {
+ try {
+ const projects = await Project.find();
+ res.json(projects);
+ } catch (err) {
+ res.status(500).json({ error: 'Eroare ' + err });
+ }
 });
-
 // GET /api/projects/:id - Returnează un singur proiect după ID
+
+/*
 app.get('/api/projects/:id', function(req, res) {
   const projectId = parseInt(req.params.id);
   const project = projects.find(p => p.id === projectId);
@@ -81,6 +82,7 @@ app.delete('/api/projects/:id', function(req, res) {
     res.json({ message: 'Deleted' });
   }
 });
+*/
 
 app.listen(PORT, function() {
   console.log('Server pornit pe http://localhost:' + PORT);
