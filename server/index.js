@@ -1,7 +1,11 @@
 const express = require('express');
+const cors = require('cors'); // Linie nouă
 const app = express();
 const mongoose = require('mongoose');
 const Project = require('./models/Project');
+
+app.use(cors()); 
+app.use(express.json());
 
 // Conectare la MongoDB
 mongoose.connect('mongodb://localhost:27017/dashboard')
