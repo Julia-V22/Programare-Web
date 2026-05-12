@@ -54,20 +54,23 @@ app.get('/api/stats', function(req, res) {
     inLucru: ongoing
   });
 });
+*/
 
 // Ruta POST - adăugare proiect
-app.post('/api/projects', function(req, res) {
-  const newProject = {
-    id: projects.length + 1,
-    title: req.body.title,
-    tech: req.body.tech,
-    done: req.body.done || false,
-  };
-
-  projects.push(newProject);
-  res.status(201).json(newProject);
+app.post('/api/projects', async function(req, res) {
+ try {
+      const newProject = new Project({
+          title: req.body.title,
+          tech: req.body.tech,
+          done: req.body.done || false,
+      });
+      const saved = await newProject.save();
+      res.status(201).json(saved);
+ } catch (err) {
+     res.status(400).json({ error: err.message });
+ }
 });
-
+/*
 // EXERCIȚIUL 5: DELETE — ștergere proiect
 app.delete('/api/projects/:id', function(req, res) {
   const id = parseInt(req.params.id);
