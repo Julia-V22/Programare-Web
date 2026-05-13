@@ -8,45 +8,43 @@ function ProjectList() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch('/data/projects.json')
-        .then(res => {
-          if (!res.ok) throw new Error('Fișierul nu a fost găsit!');
-          return res.json();
-        })
-        .then(data => {
-          setProjects(data.projects);
-          setLoading(false);
-        })
-        .catch(err => {
-          setError(err.message);
-          setLoading(false);
-        });
-    }, 800);
+fetch('http://localhost:3000/api/projects')
+      .then(res => {
+        if (!res.ok) throw new Error('Eroare la conectarea cu serverul!');
+        return res.json();
+      })
+      .then(data => {
+        setProjects(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
-  // Ex 3: Filtrare inteligentă
+  // Filtrare inteligentă 
   const filtered = projects.filter(p => 
     p.title.toLowerCase().includes(search.toLowerCase()) ||
     p.tech.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Ex 4: Statistici calculate
+  // Statistici calculate 
   const total = projects.length;
   const finished = projects.filter(p => p.done).length;
   const inProgress = total - finished;
 
-  if (loading) return <div style={msgStyle}>⏳ Se conectează la baza de date...</div>;
+  if (loading) return <div style={msgStyle}>⏳ Se încarcă datele din MongoDB...</div>;
   if (error) return <div style={{...msgStyle, color: '#ef4444'}}>❌ Eroare: {error}</div>;
 
   return (
     <div style={containerStyle}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <h2 style={{ color: '#1e293b', margin: 0 }}>📂 Portofoliu Proiecte</h2>
+        <h2 style={{ color: '#1e293b', margin: 0 }}>📂 Portofoliu Proiecte (Full Stack)</h2>
         <div style={badgeStyle}>{total} Total</div>
       </header>
 
-      {/* Ex 3: Search Bar Modern */}
+      {/*Search Bar */}
       <div style={{ position: 'relative', marginBottom: '25px' }}>
         <input 
           type="text"
@@ -61,16 +59,15 @@ function ProjectList() {
       <div style={gridStyle}>
         {filtered.map(p => (
           <Card 
-            key={p.id}
+            key={p._id} 
             title={p.title}
             description={p.tech}
             status={p.done ? "Finalizat" : "În lucru"}
-            // Putem trimite culori diferite pentru status direct în props dacă Card le suportă
           />
         ))}
       </div>
 
-      {/* Ex 4: Panou Statistici Stilizat */}
+      {/* Panou Statistici */}
       <div style={statsPanelStyle}>
         <div style={statItem}><strong>Total:</strong> {total}</div>
         <div style={{...statItem, color: '#16a34a'}}><strong>✅ Finalizate:</strong> {finished}</div>
@@ -80,7 +77,7 @@ function ProjectList() {
   );
 }
 
-// --- Stiluri pentru aspect profesional ---
+// --- Stiluri ---
 const containerStyle = { padding: '25px', backgroundColor: '#ffffff', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' };
 const searchStyle = { width: '100%', padding: '12px 15px', borderRadius: '12px', border: '2px solid #e2e8f0', outline: 'none', fontSize: '1rem', transition: 'border-color 0.3s' };
 const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' };
