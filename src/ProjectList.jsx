@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import AddProject from './AddProject';
 import Card from './Card';
 
 function ProjectList() {
@@ -23,6 +24,10 @@ fetch('http://localhost:3000/api/projects')
       });
   }, []);
 
+  const handleProjectAdded = (newProject) => {
+    setProjects([...projects, newProject]);
+  };
+
   // Filtrare inteligentă 
   const filtered = projects.filter(p => 
     p.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -44,6 +49,8 @@ fetch('http://localhost:3000/api/projects')
         <div style={badgeStyle}>{total} Total</div>
       </header>
 
+      {/* Formularul de adăugare */}
+             <AddProject onProjectAdded={handleProjectAdded} />
       {/*Search Bar */}
       <div style={{ position: 'relative', marginBottom: '25px' }}>
         <input 
