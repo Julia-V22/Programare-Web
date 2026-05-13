@@ -28,6 +28,24 @@ fetch('http://localhost:3000/api/projects')
     setProjects([...projects, newProject]);
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Sigur vrei să ștergi acest proiect?")) return;
+
+    try {
+      const response = await fetch(`http://localhost:3000/api/projects/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) throw new Error('Eroare la ștergere!');
+
+      // Actualizăm starea locală
+      setProjects(projects.filter(p => p._id !== id));
+    } catch (err) {
+      console.error('Eroare la ștergere:', err);
+      alert("Nu s-a putut șterge proiectul!");
+    }
+  };
+
   // Filtrare inteligentă 
   const filtered = projects.filter(p => 
     p.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -67,9 +85,11 @@ fetch('http://localhost:3000/api/projects')
         {filtered.map(p => (
           <Card 
             key={p._id} 
+            id={p._id}
             title={p.title}
             description={p.tech}
             status={p.done ? "Finalizat" : "În lucru"}
+            onDelete={handleDelete}
           />
         ))}
       </div>
