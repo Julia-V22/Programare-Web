@@ -194,6 +194,7 @@ fetch('http://localhost:3000/api/projects')
               title={p.title}
               description={p.tech}
               status={p.done ? "Finalizat" : "În lucru"}
+              done={p.done}
               onDelete={handleDelete}
               onToggle={() => handleToggle(p._id, p.done)}
               onEdit={() => handleEdit(p)}

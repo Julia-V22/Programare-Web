@@ -25,7 +25,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="fade-in">
+    <div className="page-container fade-in" style={homeContainerStyle}>
       <h1 style={{ fontSize: '4rem', marginBottom: '10px' }}>
         Salut, sunt <span className="highlight">Julia</span>
       </h1>
@@ -47,22 +47,32 @@ function Home() {
       ) : (
         <div style={statsContainerStyle}>
           <div style={statsCardStyle}>
-            <h3>Total proiecte</h3>
-            <p>{stats.totalProiecte}</p>
+            <h3 style={statsTitleStyle}>Total proiecte</h3>
+            <p style={statsValueStyle}>{stats.totalProiecte}</p>
           </div>
           <div style={statsCardStyle}>
-            <h3>Finalizate</h3>
-            <p>{stats.finalizate}</p>
+            <h3 style={statsTitleStyle}>Finalizate</h3>
+            <p style={statsValueStyle}>{stats.finalizate}</p>
           </div>
           <div style={statsCardStyle}>
-            <h3>În lucru</h3>
-            <p>{stats.inLucru}</p>
+            <h3 style={statsTitleStyle}>În lucru</h3>
+            <p style={statsValueStyle}>{stats.inLucru}</p>
           </div>
         </div>
       )}
     </div>
   );
 }
+
+const homeContainerStyle = {
+  width: '100%',
+  maxWidth: '1000px',
+  padding: '40px',
+  borderRadius: '32px',
+  backgroundColor: 'rgba(15, 23, 42, 0.95)',
+  border: '1px solid rgba(255, 255, 255, 0.08)',
+  boxShadow: '0 24px 60px rgba(0, 0, 0, 0.35)'
+};
 
 const statsContainerStyle = {
   display: 'flex',
@@ -73,11 +83,26 @@ const statsContainerStyle = {
 
 const statsCardStyle = {
   flex: '1 1 220px',
-  backgroundColor: '#f8fafc',
-  padding: '20px',
-  borderRadius: '16px',
-  border: '1px solid #e2e8f0',
-  boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)'
+  backgroundColor: '#111827',
+  color: 'white',
+  padding: '24px',
+  borderRadius: '22px',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
+  boxShadow: '0 18px 45px rgba(0, 0, 0, 0.25)'
+};
+
+const statsTitleStyle = {
+  margin: 0,
+  fontSize: '1.05rem',
+  color: '#f8fafc',
+  opacity: 0.8
+};
+
+const statsValueStyle = {
+  margin: '20px 0 0 0',
+  fontSize: '2.7rem',
+  fontWeight: '800',
+  color: '#f8fafc'
 };
 
 export default Home;
