@@ -26,6 +26,19 @@ function Card(props) {
     alignSelf: 'flex-start' // Nu lasă butonul să se întindă pe toată lățimea
   };
 
+  const editButtonStyle = {
+    backgroundColor: '#f59e0b',
+    color: 'white',
+    border: 'none',
+    padding: '8px 12px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: '0.8rem',
+    transition: 'background-color 0.2s',
+    alignSelf: 'flex-start'
+  };
+
   return (
     <div style={cardStyle}>
       <h3 style={{ color: '#4f46e5', margin: 0 }}>{props.title}</h3>
@@ -37,6 +50,7 @@ function Card(props) {
       </p>
 
       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        {/* Buton pentru a comuta statusul proiectului între finalizat și în lucru */}
         <button
           onClick={() => props.onToggle && props.onToggle()}
           style={{
@@ -54,6 +68,16 @@ function Card(props) {
           onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
         >
           {props.status === 'Finalizat' ? 'Marchează ca În lucru' : 'Marchează ca Finalizat'}
+        </button>
+
+        {/* Buton pentru a deschide formularul de editare al proiectului */}
+        <button
+          onClick={() => props.onEdit && props.onEdit()}
+          style={editButtonStyle}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#d97706'}
+          onMouseOut={(e) => e.target.style.backgroundColor = '#f59e0b'}
+        >
+          ✏️ Editează
         </button>
 
         {/* Butonul de Ștergere care apelează funcția primită prin props */}
