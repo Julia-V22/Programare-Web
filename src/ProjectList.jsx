@@ -46,6 +46,27 @@ fetch('http://localhost:3000/api/projects')
     }
   };
 
+  const handleToggle = async (id, currentDone) => {
+    try {
+      const response = await fetch('http://localhost:3000/api/projects/' + id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ done: !currentDone })
+      });
+
+      if (!response.ok) {
+        throw new Error('Eroare la actualizarea proiectului');
+      }
+
+      const updatedProject = await response.json();
+      setProjects(projects.map(p => p._id === id ? updatedProject : p));
+    } catch (err) {
+      console.error('Error toggling project status:', err);
+    }
+  };
+
   // Filtrare inteligentă 
   const filtered = projects.filter(p => 
     p.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -90,6 +111,7 @@ fetch('http://localhost:3000/api/projects')
             description={p.tech}
             status={p.done ? "Finalizat" : "În lucru"}
             onDelete={handleDelete}
+            onToggle={() => handleToggle(p._id, p.done)}
           />
         ))}
       </div>

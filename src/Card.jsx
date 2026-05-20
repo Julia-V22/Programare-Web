@@ -36,15 +36,36 @@ function Card(props) {
         {props.description}
       </p>
 
-      {/* Butonul de Ștergere care apelează funcția primită prin props */}
-      <button 
-         onClick={() => props.onDelete(props.id)}
-        style={deleteButtonStyle}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#dc2626'} // Efect de hover
-        onMouseOut={(e) => e.target.style.backgroundColor = '#ef4444'}
-      >
-        🗑️ Șterge
-      </button>
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        <button
+          onClick={() => props.onToggle && props.onToggle()}
+          style={{
+            backgroundColor: '#2563eb',
+            color: 'white',
+            border: 'none',
+            padding: '8px 12px',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            fontSize: '0.8rem',
+            transition: 'background-color 0.2s'
+          }}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
+          onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
+        >
+          {props.status === 'Finalizat' ? 'Marchează ca În lucru' : 'Marchează ca Finalizat'}
+        </button>
+
+        {/* Butonul de Ștergere care apelează funcția primită prin props */}
+        <button 
+           onClick={() => props.onDelete(props.id)}
+          style={deleteButtonStyle}
+          onMouseOver={(e) => e.target.style.backgroundColor = '#dc2626'} // Efect de hover
+          onMouseOut={(e) => e.target.style.backgroundColor = '#ef4444'}
+        >
+          🗑️ Șterge
+        </button>
+      </div>
     </div>
   );
 }
