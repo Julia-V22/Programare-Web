@@ -34,21 +34,22 @@ fetch('http://localhost:3000/api/projects')
     setProjects([...projects, newProject]);
   };
 
+  // Exercițiul 3: Confirmare înainte de ștergere
   const handleDelete = async (id) => {
-    if (!window.confirm("Sigur vrei să ștergi acest proiect?")) return;
+    if (window.confirm('Sigur doriti sa stergeti acest proiect?')) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/projects/${id}`, {
+          method: 'DELETE',
+        });
 
-    try {
-      const response = await fetch(`http://localhost:3000/api/projects/${id}`, {
-        method: 'DELETE',
-      });
+        if (!response.ok) throw new Error('Eroare la ștergere!');
 
-      if (!response.ok) throw new Error('Eroare la ștergere!');
-
-      // Actualizăm starea locală
-      setProjects(projects.filter(p => p._id !== id));
-    } catch (err) {
-      console.error('Eroare la ștergere:', err);
-      alert("Nu s-a putut șterge proiectul!");
+        // Actualizăm starea locală
+        setProjects(projects.filter(p => p._id !== id));
+      } catch (err) {
+        console.error('Eroare la ștergere:', err);
+        alert("Nu s-a putut șterge proiectul!");
+      }
     }
   };
 
