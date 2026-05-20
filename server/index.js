@@ -50,6 +50,7 @@ app.get('/api/projects/:id', async function(req, res) {
 });
 
 // GET /api/stats - Returnează statistici folosind MongoDB
+// Exercițiul 4: statistici live pe pagina Home
 app.get('/api/stats', async function(req, res) {
   try {
     const total = await Project.countDocuments();
@@ -61,7 +62,7 @@ app.get('/api/stats', async function(req, res) {
       inLucru: total - completed
     });
   } catch (err) {
-    res.status(500).json({ error: 'Eroare stats: ' + err.message });
+    res.status(500).json({ error: 'Eroare server: ' + err.message });
   }
 });
 
